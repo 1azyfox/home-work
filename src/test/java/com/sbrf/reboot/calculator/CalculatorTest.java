@@ -18,6 +18,36 @@ class CalculatorTest {
     }
 
     @Test
+    void getAdditionWhenOneNumberIsIntegerMaxValueAndSecondNumberIsInteger() {
+        assertEquals(2.14748365E9, new Calculator().getAddition(Integer.MAX_VALUE, 3));
+    }
+
+    @Test
+    void getAdditionWhenOneNumberIsIntegerMaxValueAndSecondNumberIsNegativeInteger() {
+        assertEquals(2.147483644E9, new Calculator().getAddition(Integer.MAX_VALUE, -3));
+    }
+
+    @Test
+    void getAdditionWhenBothNumbersAreIntegerMaxValue() {
+        assertEquals(4.294967294E9, new Calculator().getAddition(Integer.MAX_VALUE, Integer.MAX_VALUE));
+    }
+
+    @Test
+    void getAdditionWhenBothNumbersAreIntegerMinValue() {
+        assertEquals(-4.294967296E9, new Calculator().getAddition(Integer.MIN_VALUE, Integer.MIN_VALUE));
+    }
+
+    @Test
+    void getAdditionWhenOneNumberIsIntegerMinValueAndSecondNumberIsNegativeInteger() {
+        assertEquals(-2.147483651E9, new Calculator().getAddition(Integer.MIN_VALUE, -3));
+    }
+
+    @Test
+    void getAdditionWhenOneNumberIsIntegerMinValueAndSecondNumberIsPositiveInteger() {
+        assertEquals(-2147483645, new Calculator().getAddition(Integer.MIN_VALUE, 3));
+    }
+
+    @Test
     void getAdditionWhenNumbersAreMixed() {
         assertEquals(5.2, new Calculator().getAddition(2, 3.2));
     }
@@ -36,6 +66,40 @@ class CalculatorTest {
     void getSubtractionWhenNumbersAreMixed() {
         assertEquals(-3.5, new Calculator().getSubtraction(5, 8.5));
     }
+
+
+    @Test
+    void getSubtractionWhenOneNumberIsIntegerMaxValueAndSecondNumberIsInteger() {
+        assertEquals(2147483644, new Calculator().getSubtraction(Integer.MAX_VALUE, 3));
+    }
+
+    @Test
+    void getSubtractionWhenOneNumberIsIntegerMaxValueAndSecondNumberIsNegativeInteger() {
+        assertEquals(2147483650D, new Calculator().getSubtraction(Integer.MAX_VALUE, -3));
+    }
+
+    @Test
+    void getSubtractionWhenBothNumbersAreIntegerMaxValue() {
+        assertEquals(0, new Calculator().getSubtraction(Integer.MAX_VALUE, Integer.MAX_VALUE));
+    }
+
+    @Test
+    void getSubtractionWhenBothNumbersAreIntegerMinValue() {
+        assertEquals(0, new Calculator().getSubtraction(Integer.MIN_VALUE, Integer.MIN_VALUE));
+    }
+
+    @Test
+    void getSubtractionWhenOneNumberIsIntegerMinValueAndSecondNumberIsNegativeInteger() {
+        assertEquals(-2.147483645E9, new Calculator().getSubtraction(Integer.MIN_VALUE, -3));
+    }
+
+    @Test
+    void getSubtractionWhenOneNumberIsIntegerMinValueAndSecondNumberIsPositiveInteger() {
+        assertEquals(-2147483651D, new Calculator().getSubtraction(Integer.MIN_VALUE, 3));
+    }
+
+
+
 
     @Test
     void getMultiplicationWhenNumbersAreInt() {
