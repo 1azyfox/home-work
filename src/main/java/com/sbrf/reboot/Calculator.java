@@ -6,12 +6,24 @@ public class Calculator {
         if (firstNumber.doubleValue() % 1 != 0 || secondNumber.doubleValue() % 1 != 0) {
             return Double.sum(firstNumber.doubleValue(), secondNumber.doubleValue());
         } else {
+            if (((Math.abs(firstNumber.doubleValue()) + Math.abs(secondNumber.doubleValue())) > Integer.MAX_VALUE) &&
+                    Math.signum(firstNumber.doubleValue()) == Math.signum(secondNumber.doubleValue())) {
+                return Double.sum(firstNumber.doubleValue(), secondNumber.doubleValue());
+            }
             return Integer.sum(firstNumber.intValue(), secondNumber.intValue());
         }
     }
 
     public <T extends Number> double getSubtraction(T firstNumber, T secondNumber) {
-        return firstNumber.doubleValue() - secondNumber.doubleValue();
+        if (firstNumber.doubleValue() % 1 != 0 || secondNumber.doubleValue() % 1 != 0) {
+            return firstNumber.doubleValue() - secondNumber.doubleValue();
+        } else {
+            if (((Math.abs(firstNumber.doubleValue()) + Math.abs(secondNumber.doubleValue())) > Integer.MAX_VALUE) &&
+                    Math.signum(firstNumber.doubleValue()) != Math.signum(secondNumber.doubleValue())) {
+                return firstNumber.doubleValue() - secondNumber.doubleValue();
+            }
+            return (int) (firstNumber.doubleValue() - secondNumber.doubleValue());
+        }
     }
 
     public <T extends Number> double getMultiplication(T firstNumber, T secondNumber) {
