@@ -1,9 +1,11 @@
 package com.sbrf.reboot.repository;
 
-import java.util.HashSet;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public interface AccountRepository {
-    static HashSet getAllAccountsByClientId(long clientId) {
-        return new HashSet<>();
-    }
+    Set<Long> getAllAccountsByClientId(long clientId);
+    Map<Long, List<Long>> getAllAccounts();
 }

@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -28,7 +27,7 @@ class AccountServiceTest {
 
     @Test
     void contractExist() {
-        Set<Long> accounts = new HashSet();
+        Set<Long> accounts = new HashSet<>();
         accounts.add(111L);
 
         long clientId = 1L;
@@ -42,7 +41,7 @@ class AccountServiceTest {
 
     @Test
     void contractNotExist() {
-        Set<Long> accounts = new HashSet();
+        Set<Long> accounts = new HashSet<>();
         accounts.add(222L);
 
         long clientId = 1L;
@@ -51,6 +50,58 @@ class AccountServiceTest {
         when(accountRepository.getAllAccountsByClientId(clientId)).thenReturn(accounts);
 
         assertFalse(accountService.isClientHasContract(clientId, contractNumber));
+    }
+
+    @Test
+    void foundClientsIdByContractNumber() {
+        Map<Long, List<Long>> allAccounts = new HashMap<>();
+
+        ArrayList<Long> firstAccountContracts = new ArrayList<>();
+        firstAccountContracts.add(111L);
+        firstAccountContracts.add(11L);
+        allAccounts.put(1L,firstAccountContracts);
+
+        ArrayList<Long> secondAccountContracts = new ArrayList<>();
+        secondAccountContracts.add(111L);
+        secondAccountContracts.add(22L);
+        allAccounts.put(2L,secondAccountContracts);
+
+        ArrayList<Long> thirdAccountContracts = new ArrayList<>();
+        thirdAccountContracts.add(333L);
+        thirdAccountContracts.add(33L);
+        allAccounts.put(3L,thirdAccountContracts);
+
+        when(accountRepository.getAllAccounts()).thenReturn(allAccounts);
+
+        List<Long> requiredClientsIds = new ArrayList<>();
+        requiredClientsIds.add(1L);
+        requiredClientsIds.add(2L);
+
+        assertEquals(requiredClientsIds, accountService.getClientsIdByContractNumber(111L));
+    }
+
+    @Test
+    void notFoundClientsIdByContractNumber() {
+        Map<Long, List<Long>> allAccounts = new HashMap<>();
+
+        ArrayList<Long> firstAccountContracts = new ArrayList<>();
+        firstAccountContracts.add(111L);
+        firstAccountContracts.add(11L);
+        allAccounts.put(1L,firstAccountContracts);
+
+        ArrayList<Long> secondAccountContracts = new ArrayList<>();
+        firstAccountContracts.add(111L);
+        firstAccountContracts.add(22L);
+        allAccounts.put(2L,secondAccountContracts);
+
+        ArrayList<Long> thirdAccountContracts = new ArrayList<>();
+        firstAccountContracts.add(333L);
+        firstAccountContracts.add(33L);
+        allAccounts.put(3L,thirdAccountContracts);
+
+        when(accountRepository.getAllAccounts()).thenReturn(allAccounts);
+
+        assertTrue(accountService.getClientsIdByContractNumber(444L).isEmpty());
     }
 
     @Test

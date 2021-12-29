@@ -1,9 +1,34 @@
 package com.sbrf.reboot.service;
 
 import com.sbrf.reboot.repository.AccountRepository;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+
+@RequiredArgsConstructor
 public class AccountService {
-    public boolean isClientHasContract(long clientId, long contractNumber) {
-        return AccountRepository.getAllAccountsByClientId(clientId).contains(contractNumber);
+
+    @NonNull
+    private final AccountRepository accountRepository;
+
+    public boolean isClientHasContract(@NonNull long clientId, @NonNull long contractNumber) {
+        return accountRepository.getAllAccountsByClientId(clientId).contains(contractNumber);
+    }
+
+    public List<Long> getClientsIdByContractNumber(@NonNull long contractNumber) {
+        Map<Long, List<Long>> allAccounts = accountRepository.getAllAccounts();
+        List<Long> clientsIds = new ArrayList<>();
+        for (Map.Entry<Long, List<Long>> entry : allAccounts.entrySet()) {
+            for (Long value : entry.getValue()) {
+                if (value == contractNumber) {
+                    clientsIds.add(entry.getKey());
+                }
+            }
+        }
+        return clientsIds;
     }
 }
