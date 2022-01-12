@@ -15,11 +15,11 @@ public class AccountService {
     @NonNull
     private final AccountRepository accountRepository;
 
-    public boolean isClientHasContract(@NonNull long clientId, @NonNull long contractNumber) {
+    public boolean isClientHasContract(long clientId, long contractNumber) {
         return accountRepository.getAllAccountsByClientId(clientId).contains(contractNumber);
     }
 
-    public List<Long> getClientsIdByContractNumber(@NonNull long contractNumber) {
+    public List<Long> getClientsIdByContractNumber(long contractNumber) {
         Map<Long, List<Long>> allAccounts = accountRepository.getAllAccounts();
         List<Long> clientsIds = new ArrayList<>();
         for (Map.Entry<Long, List<Long>> entry : allAccounts.entrySet()) {

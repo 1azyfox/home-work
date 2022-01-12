@@ -7,5 +7,6 @@ import java.util.Set;
 
 public interface AccountRepository {
     Set<Long> getAllAccountsByClientId(long clientId);
+    boolean updateContractNumberByClientId(long clientId, long oldContractNumber, long newContractNumber);
     Map<Long, List<Long>> getAllAccounts();
 }

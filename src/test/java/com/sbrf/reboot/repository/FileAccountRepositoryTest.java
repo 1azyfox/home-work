@@ -1,15 +1,15 @@
 package com.sbrf.reboot.repository;
 
+import com.sbrf.reboot.exceptions.FileAccountRepositoryException;
 import com.sbrf.reboot.repository.impl.FileAccountRepository;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FileAccountRepositoryTest {
 
@@ -40,7 +40,23 @@ class FileAccountRepositoryTest {
 
         accountRepository = new FileAccountRepository(filePath);
 
-        assertThrows(FileNotFoundException.class, () -> accountRepository.getAllAccountsByClientId(clientId));
+        assertThrows(FileAccountRepositoryException.class, () -> accountRepository.getAllAccountsByClientId(clientId));
+    }
+
+    @Test
+    void updateContractNumber() {
+        long clientId = 2L;
+        long oldContractNumber = 777L;
+        long newContractNumber = 666L;
+
+        String filePath = "src/main/resources/Accounts.txt";
+
+        accountRepository = new FileAccountRepository(filePath);
+        accountRepository.updateContractNumberByClientId(clientId, oldContractNumber, newContractNumber);
+
+        assertTrue(accountRepository.getAllAccountsByClientId(2L).contains(666L));
+
+        accountRepository.updateContractNumberByClientId(clientId, newContractNumber, oldContractNumber);
     }
 
 
