@@ -1,19 +1,16 @@
 package com.sbrf.reboot.atm.cassettes;
 
-import com.sbrf.reboot.atm.cassettes.Banknotes.Banknote;
-import com.sbrf.reboot.atm.cassettes.Banknotes.RoubleBanknotes;
-
+import com.sbrf.reboot.atm.cassettes.banknote.Banknote;
+import com.sbrf.reboot.atm.cassettes.banknote.RoubleBanknotes;
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class RoublesCassette<T extends Banknote> implements Cassette {
     private final List<RoubleBanknotes> banknoteCollection;
 
     public int getCountBanknotes() {
         return banknoteCollection.size();
-    }
-
-    public RoublesCassette(List<RoubleBanknotes> banknoteCollection) {
-        this.banknoteCollection = banknoteCollection;
     }
 
     @Override

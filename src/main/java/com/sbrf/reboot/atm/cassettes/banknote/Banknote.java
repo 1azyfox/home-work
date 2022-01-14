@@ -1,4 +1,4 @@
-package com.sbrf.reboot.atm.cassettes.Banknotes;
+package com.sbrf.reboot.atm.cassettes.banknote;
 
 
 public interface Banknote {

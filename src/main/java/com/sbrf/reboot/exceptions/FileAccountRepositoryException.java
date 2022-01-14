@@ -1,8 +1,7 @@
 package com.sbrf.reboot.exceptions;
 
 public class FileAccountRepositoryException extends RuntimeException {
-    public FileAccountRepositoryException() {
-    }
+    public FileAccountRepositoryException() {}
 
     public FileAccountRepositoryException(String message) {
         super(message);

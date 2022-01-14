@@ -1,7 +1,7 @@
 package com.sbrf.reboot.atm.cassettes;
 
 
-import com.sbrf.reboot.atm.cassettes.Banknotes.Banknote;
+import com.sbrf.reboot.atm.cassettes.banknote.Banknote;
 
 public interface Cassette<T extends Banknote> {
     int getCountBanknotes();

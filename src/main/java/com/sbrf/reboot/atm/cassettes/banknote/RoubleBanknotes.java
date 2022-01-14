@@ -1,5 +1,8 @@
-package com.sbrf.reboot.atm.cassettes.Banknotes;
+package com.sbrf.reboot.atm.cassettes.banknote;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public enum RoubleBanknotes implements Banknote {
     FIVE_ROUBLES(5),
     TEN_ROUBLES(10),
@@ -12,10 +15,6 @@ public enum RoubleBanknotes implements Banknote {
     FIVE_THOUSAND_ROUBLES(5000);
 
     final int value;
-
-    RoubleBanknotes(int value) {
-        this.value = value;
-    }
 
     @Override
     public int getValue() {
