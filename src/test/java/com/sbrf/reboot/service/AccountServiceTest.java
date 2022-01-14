@@ -107,6 +107,7 @@ class AccountServiceTest {
     @Test
     void repositoryHasFourMethods() {
         assertEquals(3, AccountRepository.class.getMethods().length);
+
     }
 
     @Test

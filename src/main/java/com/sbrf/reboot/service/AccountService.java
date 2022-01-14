@@ -20,6 +20,7 @@ public class AccountService {
     }
 
     public List<Long> getClientsIdByContractNumber(long contractNumber) {
+
         Map<Long, List<Long>> allAccounts = accountRepository.getAllAccounts();
         List<Long> clientsIds = new ArrayList<>();
         for (Map.Entry<Long, List<Long>> entry : allAccounts.entrySet()) {
