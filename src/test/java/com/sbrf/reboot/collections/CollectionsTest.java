@@ -1,8 +1,9 @@
 package com.sbrf.reboot.collections;
 
+import lombok.AllArgsConstructor;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,19 +20,22 @@ public class CollectionsTest {
      *
      * В новом семестре по результатам подсчетов оценок в рейтинг на 1 место добавился новый студент - Козлов.
      * Теперь в рейтинге участвуют 4 студента.
-     * (Предполагаем что в рейтинг можно попасть только получив достаточное количество балов, что бы занять 1 место).
+     * (Предполагаем что в рейтинг можно попасть только получив достаточное количество баллов, чтобы занять 1 место).
      *
      * Вопрос.
      * Какую коллекцию из Collections framework вы предпочтете для текущего хранения и использования списка студентов?
      *
-     * Проинициализируйте students, добавьте в нее 4 фамилии студентов что бы тест завершился успешно.
+     * Проинициализируйте students, добавьте в нее 4 фамилии студентов, чтобы тест завершился успешно.
      */
     @Test
     public void addStudentToRating() {
 
-        List<String> students = null;
+        List<String> students = new LinkedList<>();
 
-        //...
+        students.add("Сидоров");
+        students.add("Петров");
+        students.add("Иванов");
+        students.add("Козлов");
 
         assertEquals(4, students.size());
     }
@@ -44,14 +48,23 @@ public class CollectionsTest {
      * Вопрос.
      * Какую коллекцию из Collections framework вы предпочтете использовать для хранения монет в боксе.
      *
-     * Проинициализируйте moneyBox, добавьте в нее 10 монет что бы тест завершился успешно.
+     * Проинициализируйте moneyBox, добавьте в нее 10 монет, чтобы тест завершился успешно.
      */
     @Test
     public void addMoneyToBox() {
 
-        List<Integer> moneyBox = null;
+        Set<Integer> moneyBox = new HashSet<>();
 
-        //...
+        moneyBox.add(10);
+        moneyBox.add(50);
+        moneyBox.add(100);
+        moneyBox.add(200);
+        moneyBox.add(500);
+        moneyBox.add(1000);
+        moneyBox.add(5000);
+        moneyBox.add(2000);
+        moneyBox.add(2);
+        moneyBox.add(1);
 
         assertEquals(10, moneyBox.size());
     }
@@ -64,16 +77,25 @@ public class CollectionsTest {
      * Вопрос.
      * Какую коллекцию из Collections framework вы предпочтете использовать для хранения книг.
      *
-     * Проинициализируйте bookshelf, добавьте в нее 3 книги что бы тест завершился успешно.
+     * Проинициализируйте bookshelf, добавьте в нее 3 книги, чтобы тест завершился успешно.
      */
     @Test
     public void addBookToShelf() {
+        @AllArgsConstructor
         class Book {
+            String author;
+            String name;
         }
 
-        List<Book> bookshelf = null;
+        Map<Book, Integer> bookshelf = new LinkedHashMap<>();
 
-        //...
+        Book tolstoyWarAndPeace = new Book("tolstoy","warAndPeace");
+        Book chekhovWardNo6 = new Book("chekhov","wardNo6");
+        Book dostoevskyCrimeAndPunishment = new Book("dostoevsky","crimeAndPunishment");
+
+        bookshelf.put(tolstoyWarAndPeace, 1);
+        bookshelf.put(chekhovWardNo6, 2);
+        bookshelf.put(dostoevskyCrimeAndPunishment, 3);
 
         assertEquals(3, bookshelf.size());
     }
