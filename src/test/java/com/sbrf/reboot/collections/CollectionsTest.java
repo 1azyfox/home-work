@@ -55,16 +55,16 @@ public class CollectionsTest {
 
         Set<Integer> moneyBox = new HashSet<>();
 
+        moneyBox.add(1);
+        moneyBox.add(2);
         moneyBox.add(10);
         moneyBox.add(50);
         moneyBox.add(100);
         moneyBox.add(200);
         moneyBox.add(500);
         moneyBox.add(1000);
-        moneyBox.add(5000);
         moneyBox.add(2000);
-        moneyBox.add(2);
-        moneyBox.add(1);
+        moneyBox.add(5000);
 
         assertEquals(10, moneyBox.size());
     }
@@ -87,15 +87,15 @@ public class CollectionsTest {
             String name;
         }
 
-        Map<Book, Integer> bookshelf = new LinkedHashMap<>();
+        List<Book> bookshelf = new ArrayList<>();
 
         Book tolstoyWarAndPeace = new Book("tolstoy","warAndPeace");
         Book chekhovWardNo6 = new Book("chekhov","wardNo6");
         Book dostoevskyCrimeAndPunishment = new Book("dostoevsky","crimeAndPunishment");
 
-        bookshelf.put(tolstoyWarAndPeace, 1);
-        bookshelf.put(chekhovWardNo6, 2);
-        bookshelf.put(dostoevskyCrimeAndPunishment, 3);
+        bookshelf.add(tolstoyWarAndPeace);
+        bookshelf.add(chekhovWardNo6);
+        bookshelf.add(dostoevskyCrimeAndPunishment);
 
         assertEquals(3, bookshelf.size());
     }
