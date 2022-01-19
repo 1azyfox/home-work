@@ -2,17 +2,15 @@ package com.sbrf.reboot.repository.impl;
 
 import com.sbrf.reboot.exceptions.FileAccountRepositoryException;
 import com.sbrf.reboot.repository.AccountRepository;
+import lombok.RequiredArgsConstructor;
 
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 public class FileAccountRepository implements AccountRepository {
     private final String FILE_PATH;
-
-    public FileAccountRepository(String filePath) {
-        this.FILE_PATH = filePath;
-    }
 
     @Override
     public Set<Long> getAllAccountsByClientId(long clientId) {

@@ -2,7 +2,6 @@ package com.sbrf.reboot.repository;
 
 import com.sbrf.reboot.exceptions.FileAccountRepositoryException;
 import com.sbrf.reboot.repository.impl.FileAccountRepository;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -16,7 +15,7 @@ class FileAccountRepositoryTest {
     AccountRepository accountRepository;
 
     @Test
-    void onlyPersonalAccounts() throws IOException {
+    void onlyPersonalAccounts(){
         String filePath = "src/main/resources/Accounts.txt";
         accountRepository = new FileAccountRepository(filePath);
 
@@ -44,7 +43,7 @@ class FileAccountRepositoryTest {
     }
 
     @Test
-    void updateContractNumber() {
+    void successUpdateContractNumber() {
         long clientId = 2L;
         long oldContractNumber = 777L;
         long newContractNumber = 666L;
@@ -57,6 +56,19 @@ class FileAccountRepositoryTest {
         assertTrue(accountRepository.getAllAccountsByClientId(2L).contains(666L));
 
         accountRepository.updateContractNumberByClientId(clientId, newContractNumber, oldContractNumber);
+    }
+
+    @Test
+    void failUpdateContractNumber(){
+        long clientId = 3L;
+        long oldContractNumber = 888L;
+        long newContractNumber = 777L;
+
+
+        String filePath = "src/main/resources/Accounts.txt";
+        accountRepository = new FileAccountRepository(filePath);
+
+        assertFalse(accountRepository.updateContractNumberByClientId(clientId, oldContractNumber, newContractNumber));
     }
 
 
